@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+{% block body %}
+    {% for post in posts  %}
+        
+        <h1> {{post.text}} </h1>
+        {% thumbnail post.image "200x200" crop="center" as im %}
+            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+        {% endthumbnail %}
+    {% endfor %}
+{% endblock body %}
