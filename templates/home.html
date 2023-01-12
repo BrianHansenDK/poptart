@@ -1,11 +1,25 @@
 {% extends 'base.html' %}
 {% load thumbnail %}
 {% block body %}
+    <div class="row">
     {% for post in posts  %}
-        
-        <h1> {{post.text}} </h1>
-        {% thumbnail post.image "200x200" crop="center" as im %}
-            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-        {% endthumbnail %}
+        <div class="col-sm-6 col-md-3">
+            <div class="card mb-4 mt-4" style="width: 18rem;">
+                {% thumbnail post.image "200x200" crop="center" as im %}
+                    <img src="{{im.url}}" class="card-img-top" alt="{{post.text}}">
+                {% endthumbnail %}
+                <div class="card-body">
+                    <h5 class="card-title">{{post.title}} 🧁</h5>
+                    <p class="card-text">{{post.text|truncatechars:25}} </p>
+                    <a href="{% url 'poptart:detail' post.id %}" class="btn btn-primary">View full image</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-sm-6 offset-3 text-center py-5 my-5">
+            <h3> Welcome to Poptart 🧁 </h3>
+            <p> Add your first post </p>
+            <a href="{% url 'poptart:post' %}" class="btn btn-lg btn-primary">Add post</a>
     {% endfor %}
+    </div>
 {% endblock body %}

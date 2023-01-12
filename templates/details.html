@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}{{object.title}} 🧁 | {{object.text|truncatechars:37}}{% endblock title %}
+{% block body %} 
+<div class="row">
+    <div class="col-sm-10 offset-sm-1 pt-5 py-5">
+        <h1> {{post.title}} </h1>
+        {{object.text}}
+        <img class="img-fluid rounded" src='{{object.image.url}}' style='width: 100%; height: auto;'/>
+    </div>
+</div>
+
+{% endblock body %}
